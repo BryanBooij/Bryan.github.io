@@ -1,0 +1,731 @@
+/* =========================================================
+   Portfolio – stijlen
+   Kleuren en lettertypen pas je bovenaan aan, in :root.
+   ========================================================= */
+
+:root {
+  --paper: #EEF0F7;
+  --ink: #14173A;
+  --ink-soft: #4A4E78;
+  --blue: #3B4BFF;
+  --sun: #FFC93C;
+  --mist: #C9CDE3;
+
+  --font-display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --pad: clamp(1.25reFm, 5vw, 4rem);
+  --max: 74rem;
+  --bar: 4rem;
+  --radius: 0.5rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--bar) + 1rem);
+}
+
+body {
+  margin: 0;
+  padding-top: var(--bar);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  line-height: 1.05;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.2;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.project-banner {
+  display: block;
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+
+.skip {
+  position: absolute;
+  left: var(--pad);
+  top: -4rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  background: var(--ink);
+  color: var(--paper);
+  border-radius: var(--radius);
+}
+
+.skip:focus {
+  top: 0.5rem;
+}
+
+/* =========================================================
+   Bovenbalk en hamburgermenu
+   ========================================================= */
+
+.bar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--bar);
+  padding-inline: var(--pad);
+  background: var(--paper);
+  color: var(--ink);
+  border-bottom: 1px solid var(--mist);
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+body.menu-open .bar {
+  background: var(--blue);
+  color: var(--paper);
+  border-color: transparent;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  padding: 0.25rem 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.burger {
+  position: relative;
+  width: 1.75rem;
+  height: 1.25rem;
+}
+
+.burger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.2s, top 0.3s;
+}
+
+.burger span:nth-child(1) { top: 0; }
+.burger span:nth-child(2) { top: calc(50% - 1px); }
+.burger span:nth-child(3) { top: calc(100% - 2px); }
+
+body.menu-open .burger span:nth-child(1) {
+  top: calc(50% - 1px);
+  transform: rotate(45deg);
+}
+
+body.menu-open .burger span:nth-child(2) {
+  opacity: 0;
+}
+
+body.menu-open .burger span:nth-child(3) {
+  top: calc(50% - 1px);
+  transform: rotate(-45deg);
+}
+
+body.menu-open .bar :focus-visible,
+.menu :focus-visible {
+  outline-color: var(--sun);
+}
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  overflow-y: auto;
+  padding: calc(var(--bar) + 2rem) var(--pad) 3rem;
+  background: var(--blue);
+  color: var(--paper);
+  visibility: hidden;
+  clip-path: circle(0 at calc(100% - var(--pad) - 1rem) calc(var(--bar) / 2));
+  transition: clip-path 0.55s cubic-bezier(0.7, 0, 0.2, 1), visibility 0s linear 0.55s;
+}
+
+body.menu-open .menu {
+  visibility: visible;
+  clip-path: circle(150vmax at calc(100% - var(--pad) - 1rem) calc(var(--bar) / 2));
+  transition: clip-path 0.55s cubic-bezier(0.7, 0, 0.2, 1), visibility 0s;
+}
+
+.menu-main,
+.menu-sub {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.menu-main {
+  max-width: var(--max);
+  margin-inline: auto;
+}
+
+.menu-main > li > a {
+  display: inline-block;
+  padding: 0.15em 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 9vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+
+.menu-main > li > a:hover {
+  color: var(--sun);
+}
+
+.menu-sub {
+  margin: 0.25rem 0 0.75rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--sun);
+}
+
+.menu-sub a {
+  display: inline-block;
+  padding: 0.25rem 0;
+  font-size: clamp(1.15rem, 3.5vw, 1.6rem);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.menu-sub a:hover {
+  color: var(--sun);
+}
+
+.menu-sub a[aria-current="page"] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+/* =========================================================
+   Hero
+   ========================================================= */
+
+.hero {
+  padding-block: clamp(3rem, 10vw, 7rem) clamp(3rem, 8vw, 5rem);
+}
+
+.hero h1 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(3.25rem, 13vw, 10rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+.lead {
+  max-width: 36rem;
+  margin: 0 0 2rem;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  background: var(--sun);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btn-ghost {
+  background: transparent;
+}
+
+/* =========================================================
+   Secties
+   ========================================================= */
+
+.section {
+  padding-block: clamp(3.5rem, 9vw, 7rem);
+  border-top: 1px solid var(--ink);
+}
+
+.section-tight {
+  padding-block: clamp(2rem, 5vw, 3.5rem);
+}
+
+.section-grid {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 56rem) {
+  .section-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2.2fr);
+    gap: 3rem;
+  }
+
+  .section-grid > h2 {
+    position: sticky;
+    top: calc(var(--bar) + 1.5rem);
+    align-self: start;
+  }
+}
+
+.prose p,
+.prose ul {
+  max-width: 40rem;
+  margin: 0 0 1rem;
+}
+
+.prose ul {
+  padding-left: 1.2rem;
+}
+
+.prose li {
+  margin-bottom: 0.4rem;
+}
+
+.prose > :last-child {
+  margin-bottom: 0;
+}
+
+.prose a,
+.link-row a {
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.prose a:hover,
+.link-row a:hover {
+  color: var(--ink);
+}
+
+/* Over mij */
+
+.about {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 40rem) {
+  .about {
+    grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+
+.portrait {
+  width: 100%;
+  max-width: 16rem;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--mist);
+}
+
+.facts-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem 1.25rem;
+  margin: 1.5rem 0 0;
+}
+
+.facts-list dt {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.facts-list dd {
+  margin: 0;
+}
+
+/* Talen en frameworks */
+
+.skill-groups {
+  display: grid;
+  gap: 2.5rem;
+}
+
+@media (min-width: 48rem) {
+  .skill-groups {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 2rem;
+  }
+}
+
+.skill-group h3 {
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--ink);
+}
+
+.skills {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.skills li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.6rem;
+  border-bottom: 1px solid var(--mist);
+}
+
+.level {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  text-align: right;
+}
+
+.skill-note {
+  grid-column: 1 / -1;
+  max-width: 40rem;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+/* Projectenlijst op de homepage */
+
+.project-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-row {
+  position: relative;
+  display: grid;
+  gap: 1rem 1.5rem;
+  padding-block: 1.5rem;
+  border-top: 1px solid var(--mist);
+}
+
+.project-row:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+@media (min-width: 40rem) {
+  .project-row {
+    grid-template-columns: 14rem minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+.project-row img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--mist);
+}
+
+.project-row h3 {
+  margin-bottom: 0.35rem;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.1;
+}
+
+.project-row h3 a {
+  text-decoration: none;
+}
+
+.project-row h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.project-row h3 a:focus-visible {
+  outline: none;
+}
+
+.project-row h3 a:focus-visible::after {
+  outline: 3px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+
+.project-row:hover h3 a {
+  color: var(--blue);
+}
+
+.project-row p {
+  max-width: 34rem;
+  margin: 0;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags li {
+  padding: 0.1rem 0.7rem;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+/* Contact */
+
+.contact-mail {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.6rem, 6vw, 3.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-decoration-thickness: 0.08em;
+  overflow-wrap: anywhere;
+}
+
+.contact-mail:hover {
+  color: var(--blue);
+}
+
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* =========================================================
+   Projectpagina's
+   ========================================================= */
+
+.project-head {
+  padding-block: clamp(2rem, 6vw, 4rem) 2rem;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.back:hover {
+  color: var(--blue);
+}
+
+.project-head h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.project-head .lead {
+  margin-bottom: 0;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem 2rem;
+  margin: 2rem 0 0;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--ink);
+}
+
+.facts dt {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+.project-hero {
+  margin: 0 0 clamp(2rem, 5vw, 3.5rem);
+}
+
+.project-hero img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius);
+  background: var(--mist);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.25rem;
+}
+
+.gallery figure {
+  margin: 0;
+  min-width: 0;
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  border-radius: var(--radius);
+  background: var(--mist);
+}
+
+.gallery figcaption {
+  margin-top: 0.5rem;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+.project-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-block: 2rem 4rem;
+  border-top: 2px solid var(--ink);
+}
+
+.project-nav a {
+  display: block;
+  text-decoration: none;
+}
+
+.project-nav small {
+  display: block;
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+.project-nav span {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 3.5vw, 2rem);
+  line-height: 1.1;
+}
+
+.project-nav a:hover span {
+  color: var(--blue);
+}
+
+.project-nav .next {
+  margin-left: auto;
+  text-align: right;
+}
+
+/* =========================================================
+   Footer
+   ========================================================= */
+
+.footer {
+  padding-block: 2rem;
+  border-top: 1px solid var(--mist);
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+}
+
+/* =========================================================
+   Minder beweging als de bezoeker dat wil
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .menu,
+  body.menu-open .menu,
+  .burger span,
+  .bar {
+    transition: none;
+  }
+}
