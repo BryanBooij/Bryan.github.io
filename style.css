@@ -217,7 +217,10 @@ body.menu-open .menu {
   transition: clip-path 0.55s cubic-bezier(0.7, 0, 0.2, 1), visibility 0s;
 }
 
-.menu-main,
+.menu-main{
+  padding-top: 40px;
+  list-style: none;
+}
 .menu-sub {
   margin: 0;
   padding: 0;

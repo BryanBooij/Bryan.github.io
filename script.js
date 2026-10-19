@@ -9,17 +9,38 @@ const SITE = {
 const PROJECTS = [
   {
     file: "project-1.html",
-    title: "2D mobiele game",
-    summary: "Een Unity-game voor mobiel, gemaakt in een team, met een verhaalmodus, dialogen en een eindbaas.",
-    tags: ["Unity", "C#", "Teamproject"],
-    cover: "images/2d game/Banner_2.0.png",
+    title: "2D mobile game",
+    summary: "A Unity-game for android mobile, Made by a team as part of the Minor Game Design and Development, with a story mode, dialogs and a bossfight.",
+    tags: ["Unity", "C#", "Github Administrator", "Teamproject", "Lead developer"],
+    cover: "images/2d game/App icon.png",
   },
   {
     file: "project-2.html",
     title: "Social Networking app for international students",
     summary: "An international student networking platform that helps students connect, meet new people, and build a community.",
-    tags: ["Javascript", "CSS", "HTML"],
+    tags: ["Javascript", "CSS", "HTML", "Teamproject"],
     cover: "images/Global-to-social/banner.png",
+  },
+  {
+    file: "project-3.html",
+    title: "Physio Agent",
+    summary: "Developed an AI-powered physiotherapy bot using LangChain and Azure OpenAI",
+    tags: ["Javascript", "CSS", "HTML", "LangChain", "Azure OpenAI", "LLM", "Vector Database"],
+    cover: "images/Agent/Menu.png",
+  },
+  {
+    file: "project-4.html",
+    title: "Single page webapplication",
+    summary: "Developed a single-page web application for international students to connect with like-minded people, discover shared interests, and build a social community. Implemented the frontend and backend functionality to support an interactive networking experience.",
+    tags: ["PHP", "JavaScript", "HTML", "CSS", "REST API"],
+    cover: "images/SinglePage/menu.png",
+  },
+  {
+    file: "project-5.html",
+    title: "Restful backend application",
+    summary: "Developed a RESTful backend application using PHP and JavaScript to handle server-side logic, API requests, and data processing for an AI-powered physiotherapy chatbot. Integrated backend services to support communication between the application and its AI functionality.",
+    tags: ["PHP", "JavaScript", "Node.js", "Express.js", "REST API", "Backend Development"],
+    cover: "images/Restful/Menu.png",
   },
 ];
 
@@ -159,9 +180,9 @@ function buildProjectNav() {
   const next = PROJECTS[(index + 1) % total];
 
   if (total > 2) {
-    nav.append(h("a", { class: "prev", href: prev.file }, h("small", {}, "Vorig project"), h("span", {}, prev.title)));
+    nav.append(h("a", { class: "prev", href: prev.file }, h("small", {}, "Last project"), h("span", {}, prev.title)));
   }
-  nav.append(h("a", { class: "next", href: next.file }, h("small", {}, "Volgend project"), h("span", {}, next.title)));
+  nav.append(h("a", { class: "next", href: next.file }, h("small", {}, "Next project"), h("span", {}, next.title)));
 }
 
 function bindSiteData() {
