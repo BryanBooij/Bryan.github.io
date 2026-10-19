@@ -3,7 +3,7 @@ const SITE = {
   email: "1025561@hr.nl",
   linkedin: "https://www.linkedin.com/in/bryanbooij/",
   github: "https://github.com/BryanBooij",
-  cv: "CV.pdf",
+  cv: "CV-Bryan-english.pdf",
 };
 
 const PROJECTS = [
@@ -40,7 +40,7 @@ const PROJECTS = [
     title: "Restful backend application",
     summary: "Developed a RESTful backend application using PHP and JavaScript to handle server-side logic, API requests, and data processing for an AI-powered physiotherapy chatbot. Integrated backend services to support communication between the application and its AI functionality.",
     tags: ["PHP", "JavaScript", "Node.js", "Express.js", "REST API", "Backend Development"],
-    cover: "images/Restful/Menu.png",
+    cover: "images/Restful/menu.png",
   },
 ];
 
