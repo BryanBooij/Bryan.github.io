@@ -99,7 +99,7 @@ function buildHeader() {
       "ul",
       { class: "menu-main" },
       h("li", {}, h("a", { href: "index.html#About me" }, "About me")),
-      h("li", {}, h("a", { href: "index.html#Languages" }, "Languages and frameworks")),
+      h("li", {}, h("a", { href: "index.html#Languages" }, "Technical Skills")),
       h(
         "li",
         {},
